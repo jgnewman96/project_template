@@ -1,5 +1,5 @@
 # pull official base image
-FROM node:13.12.0-alpine
+FROM node:20-alpine3.17
 
 # set working directory
 WORKDIR /src/frontend

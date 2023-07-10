@@ -13,7 +13,12 @@ services:
       - "8400:8400"
   frontend:
     build: ./frontend
-    command: "npm start"
+    command:
+      - /bin/sh
+      - -c
+      - |
+        npm install
+        yarn start
     ports:
       - "3000:3000"
     volumes:
