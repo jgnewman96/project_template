@@ -1,9 +1,20 @@
 version: "3"
 services:
-  streamlit:
-    build: .
-    command: "streamlit run run_app.py"
-    ports:
-      - "8501:8501"
+  backend-server:
+    build: ./backend
+    command: |
+      python backend/start_server.py
+        --host "0.0.0.0"
+        --port 8400
     volumes:
-      - "./src:/src"
+      - "./backend:/src/backend"
+      - $HOME/.config/gcloud:/root/.config/gcloud
+    ports:
+      - "8400:8400"
+  frontend:
+    build: ./frontend
+    command: "npm start"
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./frontend:/src/frontend"
